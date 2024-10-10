@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/store";
 import { addHabit } from "../../store/habitSlice";
 
-const AddHabitForm = () => {
+const AddHabitForm: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [frequency, setFrequency] = useState<"daily" | "weekly">("daily");
 
@@ -24,7 +24,7 @@ const AddHabitForm = () => {
       dispatch(
         addHabit({
           name,
-          frequency
+          frequency,
         })
       );
       setName("");
@@ -46,8 +46,10 @@ const AddHabitForm = () => {
           onChange={(e) => setName(e.target.value)}
           placeholder="Enter habit name"
           fullWidth
+          sx={{mb:2}}
         />
-        <FormControl fullWidth>
+
+        <FormControl fullWidth sx={{mb:2}}>
           <InputLabel>Frequency</InputLabel>
           <Select
             value={frequency}
@@ -57,7 +59,8 @@ const AddHabitForm = () => {
             <MenuItem value="weekly">Weekly</MenuItem>
           </Select>
         </FormControl>
-        <Button type="submit" variant="contained" color="primary">
+
+        <Button type="submit" variant="contained" color="primary" fullWidth>
           Add Habit
         </Button>
       </Box>
