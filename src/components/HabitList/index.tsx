@@ -24,7 +24,7 @@ const HabitList: React.FC = () => {
     const currentDate = new Date();
     while (true) {
       const dateString = currentDate.toISOString().split("T")[0];
-      if (habit.completeDates.includes(dateString)) {
+      if (habit.completedDates.includes(dateString)) {
         streak++;
         currentDate.setDate(currentDate.getDate() - 1);
       } else {
@@ -33,6 +33,7 @@ const HabitList: React.FC = () => {
     }
     return streak;
   };
+  
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 4 }}>
       {habits.map((habit) => {
@@ -52,7 +53,7 @@ const HabitList: React.FC = () => {
                   <Button
                     variant="outlined"
                     color={
-                      habit.completeDates.includes(today)
+                      habit.completedDates.includes(today)
                         ? "success"
                         : "primary"
                     }
@@ -61,7 +62,7 @@ const HabitList: React.FC = () => {
                       dispatch(toggleHabit({ id: habit.id, date: today }))
                     }
                   >
-                    {habit.completeDates.includes(today)
+                    {habit.completedDates.includes(today)
                       ? "Completed"
                       : "Mark Complete"}
                   </Button>
