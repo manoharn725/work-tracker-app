@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/store";
+import { addHabit } from "../../store/habitSlice";
 
 const AddHabitForm = () => {
   const [name, setName] = useState<string>("");
@@ -23,7 +24,7 @@ const AddHabitForm = () => {
       dispatch(
         addHabit({
           name,
-          frequency,
+          frequency
         })
       );
       setName("");
