@@ -39,6 +39,13 @@ export const fetchHabits = createAsyncThunk("habits/fetchHabits", async () => {
       completedDates: [],
       createdAt: new Date().toISOString(),
     },
+    {
+      id: "3",
+      name: "Strength Training",
+      frequency: "weekly",
+      completedDates: [],
+      createdAt: new Date().toISOString(),
+    },
   ];
   return mockHabits;
 });
@@ -76,17 +83,11 @@ const habitSlice = createSlice({
     },
     removeHabit: (
       state,
-      action: PayloadAction<{ id: string; date: string }>
+      action: PayloadAction<string>
     ) => {
-      const habit = state.habits.find((h) => h.id === action.payload.id);
-      if (habit) {
-        const index = habit.completedDates.indexOf(action.payload.date);
-        if (index > -1) {
-          habit.completedDates.splice(index, 1);
-        } else {
-          habit.completedDates.push(action.payload.date);
-        }
-      }
+      state.habits = state.habits.filter(
+        (habit) => habit.id !== action.payload
+      )
     },
   },
   extraReducers: (builder) => {

@@ -33,7 +33,7 @@ const HabitList: React.FC = () => {
     }
     return streak;
   };
-  
+
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 4 }}>
       {habits.map((habit) => {
@@ -71,7 +71,7 @@ const HabitList: React.FC = () => {
                     color="error"
                     startIcon={<DeleteIcon />}
                     onClick={() => {
-                      dispatch(removeHabit({ id: habit.id, date: today }));
+                      dispatch(removeHabit(habit.id));
                     }}
                   >
                     Remove
