@@ -14,7 +14,7 @@ const HabitStats: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchHabits());
-  }, []);
+  }, [dispatch]);
 
   const getCompletedToday = () => {
     const today = new Date().toISOString().split('T')[0];
